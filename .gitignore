@@ -1,0 +1,34 @@
+# Root composer executable
+/composer.phar
+
+# IDEs
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# OS Files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Subdirectory ignores
+/backend/.env
+/backend/.env.backup
+/frontend/node_modules/
+/frontend/dist/
+/frontend/.env
+/frontend/.env.local
+/frontend/.env.development.local
+/frontend/.env.test.local
+/frontend/.env.production.local

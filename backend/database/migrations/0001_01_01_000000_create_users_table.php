@@ -19,9 +19,8 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('phone', 50);
-            $table->enum('role', ['Admin', 'Seller', 'Customer', 'Delivery'])->default('Customer');
-            // Sellers start as Pending until Admin approves; others default to Active
-            $table->enum('status', ['Active', 'Inactive', 'Pending'])->default('Active');
+            $table->enum('role', ['admin', 'seller', 'customer', 'delivery_personnel'])->default('customer');
+            $table->enum('status', ['pending', 'active', 'inactive'])->default('active');
             $table->text('address')->nullable();
             $table->rememberToken();
             $table->timestamps();

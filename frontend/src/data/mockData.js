@@ -1,0 +1,88 @@
+// Mock data for SMNI-Market Customer Home Page
+
+export const categories = [
+  { id: 1, name: 'Electronics', icon: 'Monitor', color: '#DBEAFE', iconColor: '#2563EB' },
+  { id: 2, name: 'Fashion', icon: 'Shirt', color: '#FCE7F3', iconColor: '#DB2777' },
+  { id: 3, name: 'Shoes', icon: 'Footprints', color: '#EDE9FE', iconColor: '#7C3AED' },
+  { id: 4, name: 'Bags', icon: 'ShoppingBag', color: '#FEF3C7', iconColor: '#D97706' },
+  { id: 5, name: 'Beauty', icon: 'Sparkles', color: '#FCE7F3', iconColor: '#EC4899' },
+  { id: 6, name: 'Watches', icon: 'Watch', color: '#DBEAFE', iconColor: '#1D4ED8' },
+  { id: 7, name: 'Home & Living', icon: 'Sofa', color: '#D1FAE5', iconColor: '#059669' },
+  { id: 8, name: 'Books', icon: 'BookOpen', color: '#FEF3C7', iconColor: '#B45309' },
+  { id: 9, name: 'Sports', icon: 'Trophy', color: '#DCFCE7', iconColor: '#16A34A' },
+  { id: 10, name: 'Toys & Baby', icon: 'Baby', color: '#FEE2E2', iconColor: '#DC2626' },
+];
+
+export const featuredProducts = [
+  {
+    id: 1,
+    name: 'Smart Watch Series 5',
+    currentPrice: 2000,
+    oldPrice: 2800,
+    discount: -29,
+    rating: 4.5,
+    reviews: 128,
+    image: '/smartwatch.jpg',
+  },
+  {
+    id: 2,
+    name: 'Wireless Earbuds',
+    currentPrice: 1200,
+    oldPrice: 1600,
+    discount: -25,
+    rating: 4.0,
+    reviews: 95,
+    image: '/earbuds.jpg',
+  },
+  {
+    id: 3,
+    name: 'Laptop Backpack',
+    currentPrice: 1500,
+    oldPrice: 2000,
+    discount: -25,
+    rating: 4.5,
+    reviews: 76,
+    image: '/backpack.jpg',
+  },
+  {
+    id: 4,
+    name: "Men's Sneakers",
+    currentPrice: 2800,
+    oldPrice: 3500,
+    discount: -20,
+    rating: 4.5,
+    reviews: 76,
+    image: '/sneakers.jpg',
+  },
+  {
+    id: 5,
+    name: 'Elegant Watch',
+    currentPrice: 1900,
+    oldPrice: 2500,
+    discount: -30,
+    rating: 4.5,
+    reviews: 64,
+    image: '/elegant_watch.jpg',
+  },
+  {
+    id: 6,
+    name: 'Women Perfume',
+    currentPrice: 1300,
+    oldPrice: 1800,
+    discount: -28,
+    rating: 4.5,
+    reviews: 47,
+    image: '/perfume.jpg',
+  },
+];
+
+export const navLinks = [
+  { label: 'Home', active: true },
+  { label: 'Categories', hasDropdown: true },
+  { label: 'Deals' },
+  { label: 'New Arrivals' },
+  { label: 'Top Sellers' },
+  { label: 'Brands' },
+  { label: 'Track Order' },
+  { label: 'Help Center' },
+];

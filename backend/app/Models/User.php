@@ -57,27 +57,27 @@ class User extends Authenticatable
 
     public function isAdmin(): bool
     {
-        return $this->role === 'Admin';
+        return $this->role === 'admin';
     }
 
     public function isSeller(): bool
     {
-        return $this->role === 'Seller';
+        return $this->role === 'seller';
     }
 
     public function isCustomer(): bool
     {
-        return $this->role === 'Customer';
+        return $this->role === 'customer';
     }
 
     public function isDelivery(): bool
     {
-        return $this->role === 'Delivery';
+        return $this->role === 'delivery_personnel';
     }
 
     public function isActive(): bool
     {
-        return $this->status === 'Active';
+        return $this->status === 'active';
     }
 
     // ─── Relationships ────────────────────────────────────────────────────────

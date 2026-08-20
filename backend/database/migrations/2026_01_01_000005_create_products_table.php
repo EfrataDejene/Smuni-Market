@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignId('seller_id')->constrained('users')->cascadeOnDelete();
             $table->foreignId('category_id')->constrained('categories')->restrictOnDelete();
             $table->foreignId('brand_id')->nullable()->constrained('brands')->restrictOnDelete();
-            $table->string('product_name', 255);
+            $table->string('name');
             $table->text('description')->nullable();
             // Price stored with 2 decimal places; up to 10 digits total
             $table->decimal('price', 12, 2);

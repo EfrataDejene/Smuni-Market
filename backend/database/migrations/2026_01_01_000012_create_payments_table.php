@@ -30,7 +30,7 @@ return new class extends Migration
             $table->foreignId('order_id')->constrained('orders')->cascadeOnDelete();
             $table->enum('payment_method', ['COD', 'Chapa']);
             // Chapa transaction reference (null for COD until collected)
-            $table->string('transaction_reference', 255)->unique()->nullable();
+            $table->string('transaction_reference')->unique()->nullable();
             $table->decimal('amount', 12, 2);
             $table->enum('payment_status', ['Pending', 'Paid', 'Failed', 'Refunded'])->default('Pending');
             $table->timestamp('payment_date')->nullable();

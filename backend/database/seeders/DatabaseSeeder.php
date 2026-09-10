@@ -16,10 +16,10 @@ class DatabaseSeeder extends Seeder
     /**
      * Seed the application's database with initial SMUNI-Market data.
      * This provides:
-     *  - 1 Admin
-     *  - 2 Sellers (Active, approved)
-     *  - 2 Customers
-     *  - 2 Delivery Personnel
+     *  - 1 admin
+     *  - 2 sellers (active, approved)
+     *  - 2 customers
+     *  - 2 delivery_personnel Personnel
      *  - 5 Categories
      *  - 5 Brands
      *  - 6 Sample Products (3 per seller) with inventory records
@@ -29,12 +29,12 @@ class DatabaseSeeder extends Seeder
         // ── Users ──────────────────────────────────────────────────────────────
 
         $admin = User::create([
-            'name'     => 'Admin User',
+            'name'     => 'admin User',
             'email'    => 'admin@smunimarket.com',
             'password' => Hash::make('password'),
             'phone'    => '+251911000001',
-            'role'     => 'Admin',
-            'status'   => 'Active',
+            'role'     => 'admin',
+            'status'   => 'active',
             'address'  => 'Addis Ababa, Ethiopia',
         ]);
 
@@ -43,8 +43,8 @@ class DatabaseSeeder extends Seeder
             'email'    => 'seller1@smunimarket.com',
             'password' => Hash::make('password'),
             'phone'    => '+251911000002',
-            'role'     => 'Seller',
-            'status'   => 'Active',
+            'role'     => 'seller',
+            'status'   => 'active',
             'address'  => 'Addis Ababa, Bole',
         ]);
 
@@ -53,8 +53,18 @@ class DatabaseSeeder extends Seeder
             'email'    => 'seller2@smunimarket.com',
             'password' => Hash::make('password'),
             'phone'    => '+251911000003',
-            'role'     => 'Seller',
-            'status'   => 'Active',
+            'role'     => 'seller',
+            'status'   => 'active',
+            'address'  => 'Addis Ababa, Piassa',
+        ]);
+
+        $sellerHabesha = User::create([
+            'name'     => 'Habesha Store',
+            'email'    => 'habesha@seller.com',
+            'password' => Hash::make('password123'),
+            'phone'    => '+251911000003',
+            'role'     => 'seller',
+            'status'   => 'active',
             'address'  => 'Addis Ababa, Piassa',
         ]);
 
@@ -63,8 +73,8 @@ class DatabaseSeeder extends Seeder
             'email'    => 'customer1@smunimarket.com',
             'password' => Hash::make('password'),
             'phone'    => '+251911000004',
-            'role'     => 'Customer',
-            'status'   => 'Active',
+            'role'     => 'customer',
+            'status'   => 'active',
             'address'  => 'Addis Ababa, Kazanchis',
         ]);
 
@@ -73,8 +83,8 @@ class DatabaseSeeder extends Seeder
             'email'    => 'customer2@smunimarket.com',
             'password' => Hash::make('password'),
             'phone'    => '+251911000005',
-            'role'     => 'Customer',
-            'status'   => 'Active',
+            'role'     => 'customer',
+            'status'   => 'active',
             'address'  => 'Addis Ababa, Mexico',
         ]);
 
@@ -83,8 +93,8 @@ class DatabaseSeeder extends Seeder
             'email'    => 'delivery1@smunimarket.com',
             'password' => Hash::make('password'),
             'phone'    => '+251911000006',
-            'role'     => 'Delivery',
-            'status'   => 'Active',
+            'role'     => 'delivery_personnel',
+            'status'   => 'active',
             'address'  => 'Addis Ababa, Sarbet',
         ]);
 
@@ -93,38 +103,38 @@ class DatabaseSeeder extends Seeder
             'email'    => 'delivery2@smunimarket.com',
             'password' => Hash::make('password'),
             'phone'    => '+251911000007',
-            'role'     => 'Delivery',
-            'status'   => 'Active',
+            'role'     => 'delivery_personnel',
+            'status'   => 'active',
             'address'  => 'Addis Ababa, Lebu',
         ]);
 
         // ── Categories ─────────────────────────────────────────────────────────
 
-        $electronics = Category::create(['category_name' => 'Electronics', 'description' => 'Electronic devices and accessories']);
-        $clothing    = Category::create(['category_name' => 'Clothing',    'description' => 'Men and women fashion']);
-        $groceries   = Category::create(['category_name' => 'Groceries',   'description' => 'Food and daily essentials']);
-        $homeGoods   = Category::create(['category_name' => 'Home & Garden','description' => 'Home appliances and garden supplies']);
-        $beauty      = Category::create(['category_name' => 'Beauty',      'description' => 'Cosmetics and personal care']);
+        $electronics = Category::create(['name' => 'Electronics', 'description' => 'Electronic devices and accessories']);
+        $clothing    = Category::create(['name' => 'Clothing',    'description' => 'Men and women fashion']);
+        $groceries   = Category::create(['name' => 'Groceries',   'description' => 'Food and daily essentials']);
+        $homeGoods   = Category::create(['name' => 'Home & Garden','description' => 'Home appliances and garden supplies']);
+        $beauty      = Category::create(['name' => 'Beauty',      'description' => 'Cosmetics and personal care']);
 
         // ── Brands ─────────────────────────────────────────────────────────────
 
-        $samsung  = Brand::create(['brand_name' => 'Samsung',    'description' => 'Korean electronics brand']);
-        $adidas   = Brand::create(['brand_name' => 'Adidas',     'description' => 'Global sportswear brand']);
-        $generic  = Brand::create(['brand_name' => 'Local Brand','description' => 'Locally manufactured products']);
-        $nokia    = Brand::create(['brand_name' => 'Nokia',      'description' => 'Finnish telecommunications brand']);
-        $loreal   = Brand::create(['brand_name' => "L'Oreal",   'description' => 'French cosmetics brand']);
+        $samsung  = Brand::create(['name' => 'Samsung',    'description' => 'Korean electronics brand']);
+        $adidas   = Brand::create(['name' => 'Adidas',     'description' => 'Global sportswear brand']);
+        $generic  = Brand::create(['name' => 'Local Brand','description' => 'Locally manufactured products']);
+        $nokia    = Brand::create(['name' => 'Nokia',      'description' => 'Finnish telecommunications brand']);
+        $loreal   = Brand::create(['name' => "L'Oreal",   'description' => 'French cosmetics brand']);
 
-        // ── Products + Inventory (Seller 1) ────────────────────────────────────
+        // ── Products + Inventory (seller 1) ────────────────────────────────────
 
         $p1 = Product::create([
             'seller_id'    => $seller1->id,
             'category_id'  => $electronics->id,
             'brand_id'     => $samsung->id,
-            'product_name' => 'Samsung Galaxy A15',
+            'name' => 'Samsung Galaxy A15',
             'description'  => '6.5 inch display, 4GB RAM, 128GB storage smartphone.',
             'price'        => 14500.00,
             'discount'     => 5.00,
-            'status'       => 'Active',
+            'status'       => 'active',
         ]);
         Inventory::create([
             'product_id'        => $p1->id,
@@ -137,11 +147,11 @@ class DatabaseSeeder extends Seeder
             'seller_id'    => $seller1->id,
             'category_id'  => $electronics->id,
             'brand_id'     => $nokia->id,
-            'product_name' => 'Nokia 105',
+            'name' => 'Nokia 105',
             'description'  => 'Dual SIM basic phone with long battery life.',
             'price'        => 1200.00,
             'discount'     => 0.00,
-            'status'       => 'Active',
+            'status'       => 'active',
         ]);
         Inventory::create([
             'product_id'        => $p2->id,
@@ -154,11 +164,11 @@ class DatabaseSeeder extends Seeder
             'seller_id'    => $seller1->id,
             'category_id'  => $homeGoods->id,
             'brand_id'     => null,
-            'product_name' => 'Pressure Cooker 6L',
+            'name' => 'Pressure Cooker 6L',
             'description'  => 'Stainless steel pressure cooker, 6 litre capacity.',
             'price'        => 3200.00,
             'discount'     => 10.00,
-            'status'       => 'Active',
+            'status'       => 'active',
         ]);
         Inventory::create([
             'product_id'        => $p3->id,
@@ -167,17 +177,17 @@ class DatabaseSeeder extends Seeder
             'stock_status'      => 'Available',
         ]);
 
-        // ── Products + Inventory (Seller 2) ────────────────────────────────────
+        // ── Products + Inventory (seller 2) ────────────────────────────────────
 
         $p4 = Product::create([
             'seller_id'    => $seller2->id,
             'category_id'  => $clothing->id,
             'brand_id'     => $adidas->id,
-            'product_name' => 'Adidas Running Shoes',
+            'name' => 'Adidas Running Shoes',
             'description'  => 'Lightweight running shoes for men, size 40–45.',
             'price'        => 5800.00,
             'discount'     => 0.00,
-            'status'       => 'Active',
+            'status'       => 'active',
         ]);
         Inventory::create([
             'product_id'        => $p4->id,
@@ -190,11 +200,11 @@ class DatabaseSeeder extends Seeder
             'seller_id'    => $seller2->id,
             'category_id'  => $beauty->id,
             'brand_id'     => $loreal->id,
-            'product_name' => "L'Oreal Elvive Shampoo",
+            'name' => "L'Oreal Elvive Shampoo",
             'description'  => '400ml moisturising shampoo for all hair types.',
             'price'        => 320.00,
             'discount'     => 0.00,
-            'status'       => 'Active',
+            'status'       => 'active',
         ]);
         Inventory::create([
             'product_id'        => $p5->id,
@@ -207,11 +217,11 @@ class DatabaseSeeder extends Seeder
             'seller_id'    => $seller2->id,
             'category_id'  => $groceries->id,
             'brand_id'     => $generic->id,
-            'product_name' => 'Organic Teff Flour 2kg',
+            'name' => 'Organic Teff Flour 2kg',
             'description'  => 'Pure Ethiopian organic teff flour, 2kg package.',
             'price'        => 180.00,
             'discount'     => 0.00,
-            'status'       => 'Active',
+            'status'       => 'active',
         ]);
         Inventory::create([
             'product_id'        => $p6->id,
@@ -220,16 +230,16 @@ class DatabaseSeeder extends Seeder
             'stock_status'      => 'Available',
         ]);
 
-        // ── Customer Carts ──────────────────────────────────────────────────────
+        // ── customer Carts ──────────────────────────────────────────────────────
 
         Cart::create(['user_id' => $customer1->id]);
         Cart::create(['user_id' => $customer2->id]);
 
         $this->command->info('✅ SMUNI-Market database seeded successfully!');
-        $this->command->info('   Admin:    admin@smunimarket.com / password');
-        $this->command->info('   Seller1:  seller1@smunimarket.com / password');
-        $this->command->info('   Seller2:  seller2@smunimarket.com / password');
-        $this->command->info('   Customer: customer1@smunimarket.com / password');
-        $this->command->info('   Delivery: delivery1@smunimarket.com / password');
+        $this->command->info('   admin:    admin@smunimarket.com / password');
+        $this->command->info('   seller1:  seller1@smunimarket.com / password');
+        $this->command->info('   seller2:  seller2@smunimarket.com / password');
+        $this->command->info('   customer: customer1@smunimarket.com / password');
+        $this->command->info('   delivery_personnel: delivery1@smunimarket.com / password');
     }
 }

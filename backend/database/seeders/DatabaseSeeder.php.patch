@@ -1,0 +1,19 @@
+--- database/seeders/DatabaseSeeder.php
++++ database/seeders/DatabaseSeeder.php
+@@ -53,6 +53,16 @@
+             'address'  => 'Addis Ababa, Bole',
+         ]);
+ 
++        $sellerHabesha = User::create([
++            'name'     => 'Habesha Store',
++            'email'    => 'habesha@seller.com',
++            'password' => Hash::make('password123'),
++            'phone'    => '+251911000003',
++            'role'     => 'seller',
++            'status'   => 'active',
++            'address'  => 'Addis Ababa, Piassa',
++        ]);
++
+         $customer1 = User::create([
+             'name'     => 'Dawit Mengistu',
+             'email'    => 'customer1@smunimarket.com',

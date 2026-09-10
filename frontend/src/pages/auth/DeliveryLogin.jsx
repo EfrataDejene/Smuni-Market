@@ -10,11 +10,6 @@ export default function DeliveryLogin() {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const fillDemo = () => {
-    setEmail('dawit@delivery.com');
-    setPassword('password123');
-    setError('');
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -54,25 +49,6 @@ export default function DeliveryLogin() {
           </h2>
           <p className="mt-1 text-xs text-gray-500">
             Sign in to access your assigned delivery runs and collect payments.
-          </p>
-        </div>
-
-        {/* Demo Quick Fill Box */}
-        <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-3.5 space-y-2">
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-bold text-emerald-900 flex items-center gap-1.5">
-              🚚 Demo Delivery Account
-            </span>
-            <button
-              type="button"
-              onClick={fillDemo}
-              className="text-[11px] bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-2.5 py-1 rounded transition"
-            >
-              Auto Fill
-            </button>
-          </div>
-          <p className="text-[11px] text-emerald-700 font-mono">
-            Email: <strong>dawit@delivery.com</strong> | Password: <strong>password123</strong>
           </p>
         </div>
 

@@ -10,11 +10,6 @@ export default function AdminLogin() {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const fillDemo = () => {
-    setEmail('admin@smuni.com');
-    setPassword('admin123');
-    setError('');
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -54,25 +49,6 @@ export default function AdminLogin() {
           </h2>
           <p className="mt-1 text-xs text-slate-400">
             Authorized personnel only. Sessions are logged and audited.
-          </p>
-        </div>
-
-        {/* Demo Quick Fill Box */}
-        <div className="bg-slate-900/80 border border-slate-700 rounded-xl p-3.5 space-y-2">
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-bold text-red-400 flex items-center gap-1.5">
-              🛡️ Demo Admin Account
-            </span>
-            <button
-              type="button"
-              onClick={fillDemo}
-              className="text-[11px] bg-red-600 hover:bg-red-700 text-white font-bold px-2.5 py-1 rounded transition"
-            >
-              Auto Fill
-            </button>
-          </div>
-          <p className="text-[11px] text-slate-300 font-mono">
-            Email: <strong>admin@smuni.com</strong> | Password: <strong>admin123</strong>
           </p>
         </div>
 

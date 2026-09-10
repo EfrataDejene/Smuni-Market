@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { AppContext } from '../../context/AppContext';
 import {
   Truck, Package, CheckCircle, XCircle, MapPin, Phone, Mail, User,
@@ -35,7 +35,9 @@ export default function DeliveryDashboard() {
   const { currentUser, logoutUser, deliveryTracking, orders, orderItems, payments, products, users, updateDeliveryStatus } = useContext(AppContext);
   const navigate = useNavigate();
 
-  const [activeSection, setActiveSection] = useState('dashboard'); // dashboard, assigned, history, earnings, profile
+  const { section } = useParams();
+  const activeSection = section || 'dashboard';
+  const setActiveSection = (newSection) => navigate(newSection === 'dashboard' ? '/delivery/dashboard' : `/delivery/dashboard/${newSection}`);
   const [selectedOrderId, setSelectedOrderId] = useState(10058);
   const [statusFilter, setStatusFilter] = useState('All Status');
   const [notificationsOpen, setNotificationsOpen] = useState(false);

@@ -1,3 +1,43 @@
+# SMUNI-Market backend
+
+Laravel API backend for SMUNI-Market.
+
+## MySQL setup
+
+Use a dedicated application account rather than the MySQL `root` account. Run the following as a MySQL administrator, replacing the password with a strong value:
+
+```sql
+CREATE DATABASE smuni_market
+	CHARACTER SET utf8mb4
+	COLLATE utf8mb4_unicode_ci;
+
+CREATE USER 'smuni_market_app'@'127.0.0.1' IDENTIFIED BY 'replace-with-a-strong-password';
+GRANT ALL PRIVILEGES ON smuni_market.* TO 'smuni_market_app'@'127.0.0.1';
+FLUSH PRIVILEGES;
+```
+
+From this directory, install dependencies and create the local environment file:
+
+```bash
+composer install
+cp .env.example .env
+php artisan key:generate
+```
+
+Set `DB_PASSWORD` in `.env` to the password used above. Keep `.env` out of version control; it is already ignored by this project.
+
+Run the schema and verify the connection:
+
+```bash
+php artisan config:clear
+php artisan migrate
+php artisan db:show
+```
+
+The MySQL connection uses `utf8mb4`, strict mode, and Laravel's normal parameterized query/Eloquent APIs. Do not commit real database credentials.
+
+## Laravel
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">

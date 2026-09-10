@@ -4,6 +4,9 @@ import ProtectedRoute from './components/ProtectedRoute';
 
 // Auth pages
 import Login from './pages/auth/Login';
+import Register from './pages/auth/Register';
+import VerifyEmail from './pages/auth/VerifyEmail';
+import ForgotPassword from './pages/auth/ForgotPassword';
 import SellerLogin from './pages/auth/SellerLogin';
 import AdminLogin from './pages/auth/AdminLogin';
 import DeliveryLogin from './pages/auth/DeliveryLogin';
@@ -17,6 +20,7 @@ import Checkout from './pages/customer/Checkout';
 import ChapaPayment from './pages/customer/ChapaPayment';
 import OrderSuccess from './pages/customer/OrderSuccess';
 import CustomerAccount from './pages/customer/CustomerAccount';
+import OrderDetail from './pages/customer/OrderDetail';
 
 // Seller pages
 import SellerDashboard from './pages/seller/SellerDashboard';
@@ -37,12 +41,20 @@ function App() {
           <Route path="/products" element={<Products />} />
           <Route path="/product/:id" element={<ProductDetail />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/order/:id" element={<OrderDetail />} />
+          <Route path="/order-tracking/:id" element={<OrderDetail />} />
+          <Route path="/customer/order/:id" element={<OrderDetail />} />
 
-          {/* ── Auth Routes ── */}
+
+          {/* ── Auth Routes (Central Unified Login & Password Reset) ── */}
           <Route path="/login" element={<Login />} />
-          <Route path="/seller/login" element={<SellerLogin />} />
-          <Route path="/admin/login" element={<AdminLogin />} />
-          <Route path="/delivery/login" element={<DeliveryLogin />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/verify-email" element={<VerifyEmail />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password" element={<ForgotPassword />} />
+          <Route path="/seller/login" element={<Login />} />
+          <Route path="/admin/login" element={<Login />} />
+          <Route path="/delivery/login" element={<Login />} />
 
           {/* ── Protected Customer Routes ── */}
           <Route path="/checkout" element={
@@ -67,14 +79,14 @@ function App() {
           } />
 
           {/* ── Protected Seller Routes ── */}
-          <Route path="/seller/dashboard" element={
+          <Route path="/seller/dashboard/:section?/:id?" element={
             <ProtectedRoute allowedRoles={['Seller']}>
               <SellerDashboard />
             </ProtectedRoute>
           } />
 
           {/* ── Protected Admin Routes ── */}
-          <Route path="/admin/dashboard" element={
+          <Route path="/admin/dashboard/:section?/:id?" element={
             <ProtectedRoute allowedRoles={['Admin']}>
               <AdminDashboard />
             </ProtectedRoute>
@@ -83,7 +95,7 @@ function App() {
           <Route path="/admin/*" element={<Navigate to="/admin/dashboard" replace />} />
 
           {/* ── Protected Delivery Routes ── */}
-          <Route path="/delivery/dashboard" element={
+          <Route path="/delivery/dashboard/:section?" element={
             <ProtectedRoute allowedRoles={['Delivery']}>
               <DeliveryDashboard />
             </ProtectedRoute>

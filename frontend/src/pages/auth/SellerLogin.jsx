@@ -1,10 +1,11 @@
-import React, { useState, useContext } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import React, { useState, useContext, useEffect } from 'react';
+import { useNavigate, useSearchParams, Link } from 'react-router-dom';
 import { AppContext } from '../../context/AppContext';
-import { Briefcase, Mail, Lock, User, Phone, MapPin, CheckCircle } from 'lucide-react';
+import { Briefcase, Mail, Lock, User, Phone, MapPin, CheckCircle, AlertCircle } from 'lucide-react';
 
 export default function SellerLogin() {
   const { loginUser, registerUser } = useContext(AppContext);
+  const [searchParams] = useSearchParams();
   const [isRegistering, setIsRegistering] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
@@ -17,13 +18,19 @@ export default function SellerLogin() {
   const [phone, setPhone] = useState('');
   const [address, setAddress] = useState('');
 
-  const fillDemo = () => {
-    setEmail('habesha@seller.com');
-    setPassword('password123');
-    setError('');
-  };
+  useEffect(() => {
+    const verifiedParam = searchParams.get('verified');
+    const emailParam = searchParams.get('email');
+    if (emailParam) {
+      setEmail(emailParam);
+    }
+    if (verifiedParam === 'true') {
+      setSuccess('Your Gmail address has been verified! Your seller account application is currently pending administrator review.');
+    }
+  }, [searchParams]);
 
-  const handleSubmit = (e) => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
     setSuccess('');
@@ -33,8 +40,9 @@ export default function SellerLogin() {
         setError('Please fill in all fields.');
         return;
       }
-      const res = registerUser({
+      const res = await registerUser({
         name: businessName,
+        storeName: businessName,
         email,
         password,
         phone,
@@ -42,10 +50,7 @@ export default function SellerLogin() {
         role: 'Seller'
       });
       if (res.success) {
-        setSuccess('Application submitted! Your seller profile is pending Administrator approval.');
-        setIsRegistering(false);
-        setEmail(email);
-        setPassword('');
+        navigate(`/verify-email?email=${encodeURIComponent(email)}&role=Seller`);
       } else {
         setError(res.message);
       }
@@ -61,6 +66,11 @@ export default function SellerLogin() {
         } else {
           setError('This login is for sellers only. Please use the appropriate login portal.');
         }
+      } else if (res.unverified) {
+        setError(res.message);
+        setTimeout(() => {
+          navigate(`/verify-email?email=${encodeURIComponent(email)}&role=Seller&reason=unverified`);
+        }, 1500);
       } else {
         setError(res.message);
       }
@@ -85,38 +95,13 @@ export default function SellerLogin() {
           <p className="mt-1 text-xs text-gray-500">
             Or{' '}
             <button
-              onClick={() => {
-                setIsRegistering(!isRegistering);
-                setError('');
-                setSuccess('');
-              }}
+              onClick={() => navigate('/register')}
               className="font-semibold text-indigo-600 hover:text-indigo-800 transition-colors focus:outline-none underline"
             >
               {isRegistering ? 'already registered? Sign in' : 'register your store'}
             </button>
           </p>
         </div>
-
-        {/* Demo Quick Fill Box */}
-        {!isRegistering && (
-          <div className="bg-indigo-50 border border-indigo-200 rounded-xl p-3.5 space-y-2">
-            <div className="flex items-center justify-between">
-              <span className="text-xs font-bold text-indigo-900 flex items-center gap-1.5">
-                💼 Demo Seller Account
-              </span>
-              <button
-                type="button"
-                onClick={fillDemo}
-                className="text-[11px] bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-2.5 py-1 rounded transition"
-              >
-                Auto Fill
-              </button>
-            </div>
-            <p className="text-[11px] text-indigo-700 font-mono">
-              Email: <strong>habesha@seller.com</strong> | Password: <strong>password123</strong>
-            </p>
-          </div>
-        )}
 
         {error && (
           <div className="bg-red-50 border border-red-200 text-red-700 text-sm px-4 py-3 rounded-lg">

@@ -21,6 +21,8 @@ class Product extends Model
         'price',
         'discount',
         'status',
+        'features',
+        'off_price',
     ];
 
     protected function casts(): array
@@ -28,6 +30,8 @@ class Product extends Model
         return [
             'price'    => 'decimal:2',
             'discount' => 'decimal:2',
+            'features' => 'array',
+            'off_price' => 'decimal:2',
         ];
     }
 
@@ -60,6 +64,11 @@ class Product extends Model
     public function images(): HasMany
     {
         return $this->hasMany(ProductImage::class);
+    }
+
+    public function variants(): HasMany
+    {
+        return $this->hasMany(ProductVariant::class);
     }
 
     public function primaryImage(): HasOne
